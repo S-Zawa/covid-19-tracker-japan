@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "reac-simple-maps": ["types/reac-simple-maps"]
+    },
+  }
+}
