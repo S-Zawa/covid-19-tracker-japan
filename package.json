@@ -10,6 +10,12 @@
     "@types/node": "^16.11.22",
     "@types/react": "^17.0.38",
     "@types/react-dom": "^17.0.11",
+    "axios": "^0.25.0",
+    "axios-jsonp": "^1.0.4",
+    "dateformat": "^5.0.2",
+    "dayjs": "^1.10.7",
+    "dotenv": "^16.0.0",
+    "http-proxy-middleware": "^2.0.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "5.0.0",
@@ -43,6 +49,7 @@
     ]
   },
   "devDependencies": {
+    "@types/dateformat": "^5.0.0",
     "@types/react-simple-maps": "^1.0.8"
   }
 }
