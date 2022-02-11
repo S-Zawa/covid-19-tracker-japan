@@ -1,0 +1,68 @@
+[
+    {
+        "level": 1,
+        "min": 0,
+        "max": 100,
+        "color": "#008000"
+    },
+    {
+        "level": 2,
+        "min": 101,
+        "max": 500,
+        "color": "#299400"
+    },
+    {
+        "level": 3,
+        "min": 501,
+        "max": 1000,
+        "color": "#54a900"
+    },
+    {
+        "level": 4,
+        "min": 1001,
+        "max": 2000,
+        "color": "#82c000"
+    },
+    {
+        "level": 5,
+        "min": 2001,
+        "max": 3000,
+        "color": "#cde600"
+    },
+    {
+        "level": 6,
+        "min": 3001,
+        "max": 5000,
+        "color": "#ffff00"
+    },
+    {
+        "level": 7,
+        "min": 5001,
+        "max": 7000,
+        "color": "#ffd600"
+    },
+    {
+        "level": 8,
+        "min": 7001,
+        "max": 10000,
+        "color": "#ffa600"
+    },
+    {
+        "level": 9,
+        "min": 10001,
+        "max": 12000,
+        "color": "#ff7a00"
+    },
+    {
+        "level": 10,
+        "min": 12001,
+        "max": 15000,
+        "color": "#ff4900"
+    },
+    {
+        "level": 11,
+        "min": 15001,
+        "max": 20000,
+        "color": "#ff0000"
+    }
+]

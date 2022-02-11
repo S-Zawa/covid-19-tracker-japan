@@ -1,6 +1,8 @@
 import React, { memo } from "react";
+import { ZoomableGroup } from "react-simple-maps";
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 import latest from "../api/latest.json";
+import colorLevels from "../assets/colorLevels.json";
 
 type Latest = typeof latest;
 const topoJson = require("../assets/japan.topojson");
@@ -9,54 +11,66 @@ export type Props = {
   setTooltipContent: React.Dispatch<React.SetStateAction<string>>;
   latestData: Latest;
 };
+const GetColorCode = (newlyConfirmed: number): string => {
+  var colorCode = colorLevels.find(
+    (x) => x.min <= newlyConfirmed && newlyConfirmed <= x.max
+  )?.color;
+  return colorCode ? colorCode : "#D6D6DA";
+};
 const MapChart: React.VFC<Props> = (props) => {
   return (
     <div data-tip="">
       <ComposableMap
         projection="geoMercator"
         projectionConfig={{
-          scale: 1200,
+          scale: 1600,
           center: [136.0, 35.6],
         }}
+        width="800"
+        height="800"
       >
         <Geographies geography={topoJson}>
           {({ geographies }: { geographies: any }) =>
             geographies.map(
               (geo: {
-                rsmKey: React.Key | null | undefined;
                 properties: { nam_ja: any; id: any };
-              }) => (
-                <Geography
-                  key={geo.rsmKey}
-                  geography={geo}
-                  onMouseEnter={() => {
-                    const { nam_ja } = geo.properties;
-                    const newlyConfirmed = props.latestData.prefectures.find(
-                      (x) => x.name_ja === nam_ja
-                    )?.newlyConfirmed;
-                    props.setTooltipContent(
-                      `${nam_ja} - 感染者数: ${newlyConfirmed}人`
-                    );
-                  }}
-                  onMouseLeave={() => {
-                    props.setTooltipContent("");
-                  }}
-                  style={{
-                    default: {
-                      fill: "#D6D6DA",
-                      outline: "none",
-                    },
-                    hover: {
-                      fill: "#F53",
-                      outline: "none",
-                    },
-                    pressed: {
-                      fill: "#E42",
-                      outline: "none",
-                    },
-                  }}
-                />
-              )
+                rsmKey: React.Key | null | undefined;
+              }) => {
+                const newlyConfirmed = props.latestData.prefectures?.find(
+                  (x) => x.name_ja === geo.properties.nam_ja
+                )?.newlyConfirmed;
+
+                const colorCode = newlyConfirmed
+                  ? GetColorCode(newlyConfirmed)
+                  : "#D6D6DA";
+                return (
+                  <Geography
+                    key={geo.rsmKey}
+                    geography={geo}
+                    onMouseEnter={() => {
+                      props.setTooltipContent(
+                        `${geo.properties.nam_ja} - 感染者数: ${newlyConfirmed}人`
+                      );
+                    }}
+                    onMouseLeave={() => {
+                      props.setTooltipContent("");
+                    }}
+                    fill={colorCode}
+                    storke="#EAEAEC"
+                    style={{
+                      default: {
+                        outline: "none",
+                      },
+                      hover: {
+                        outline: "none",
+                      },
+                      pressed: {
+                        outline: "none",
+                      },
+                    }}
+                  />
+                );
+              }
             )
           }
         </Geographies>
