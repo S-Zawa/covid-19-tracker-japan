@@ -1,6 +1,6 @@
 import React, { memo } from "react";
-import { ZoomableGroup } from "react-simple-maps";
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
+
 import latest from "../api/latest.json";
 import colorLevels from "../assets/colorLevels.json";
 
@@ -12,10 +12,10 @@ export type Props = {
   latestData: Latest;
 };
 const GetColorCode = (newlyConfirmed: number): string => {
-  var colorCode = colorLevels.find(
+  const colorCode = colorLevels.find(
     (x) => x.min <= newlyConfirmed && newlyConfirmed <= x.max
   )?.color;
-  return colorCode ? colorCode : "#D6D6DA";
+  return colorCode || "#D6D6DA";
 };
 const MapChart: React.VFC<Props> = (props) => {
   return (
